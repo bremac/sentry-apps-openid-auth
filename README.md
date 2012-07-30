@@ -8,7 +8,7 @@ social auth may be inconvenient to users using multiple Google Accounts,
 as the domain of an Apps account isn't checked until _after_ the user
 goes through the OpenID workflow.
 
-Instead, this recipe builds off of django_openid_auth and
+Instead, this recipe builds off of django-openid-auth and
 [adieu's patched version of python-openid](https://github.com/adieu/python-openid)
 to make use of the _hd_ query parameter to Google's OpenID implementation.
 
