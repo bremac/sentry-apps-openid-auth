@@ -39,7 +39,7 @@ LOGOUT_URL = '/logout/'
 OPENID_SSO_SERVER_URL = 'https://google.com/accounts/o8/site-xrds?hd=YOUR-APPS-DOMAIN'
 
 AUTHENTICATION_BACKENDS = (
-    'sentry_apps_openid_auth.auth.GoogleAuthBackend',
+    'sentry_apps_openid_auth.auth.GoogleBackend',
 )
 
 ROOT_URLCONF = 'sentry_apps_openid_auth.urls'
