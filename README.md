@@ -10,6 +10,7 @@ goes through the OpenID workflow.
 
 Instead, this recipe builds off of django-openid-auth and
 [adieu's patched version of python-openid](https://github.com/adieu/python-openid)
+(as described at http://learnedstuffs.wordpress.com/2012/05/22/django-google-account-authentication/)
 to make use of the _hd_ query parameter to Google's OpenID implementation.
 
 
