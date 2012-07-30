@@ -9,9 +9,10 @@ setup(name='sentry-apps-openid-auth',
       packages=['sentry_apps_openid_auth'],
       install_requires=[
           'django-openid-auth==0.4',
+          'python-openid-patched==2.2.5',
           'sentry==4.8.2',
       ],
       dependency_links=[
-          'git+https://github.com/adieu/python-openid.git@03773fb96dff352bbda12538726dc5c46fe0316c#egg=python-openid-2.2.5',
+          'git+https://github.com/adieu/python-openid.git@03773fb96dff352bbda12538726dc5c46fe0316c#egg=python-openid-patched-2.2.5',
       ]
 )
