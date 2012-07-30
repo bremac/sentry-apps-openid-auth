@@ -1,28 +1,28 @@
 from django.contrib.auth.models import User
 from openid.consumer.consumer import SUCCESS
-from django.core.mail import mail_admins
  
 
-class GoogleBackend:
+class GoogleBackend(object):
     def authenticate(self, openid_response):
-        if openid_response is None:
+        if openid_response is None or openid_response.status != SUCCESS:
             return None
-        if openid_response.status != SUCCESS:
-            return None
- 
-        google_email = openid_response.getSigned('http://openid.net/srv/ax/1.0',  'value.email')
-        google_firstname = openid_response.getSigned('http://openid.net/srv/ax/1.0', 'value.firstname')
-        google_lastname = openid_response.getSigned('http://openid.net/srv/ax/1.0', 'value.lastname')
+
+        def get_openid_attribute(attribute):
+            return openid_response.getSigned(
+                'http://openid.net/srv/ax/1.0',  attribute)
+
+        email = get_openid_attribute('value.email')
+
         try:
-            user = User.objects.get(email=google_email)
+            user = User.objects.get(email=email)
         except User.DoesNotExist:
-            user = User.objects.create_user(google_email, google_email, 'password')
+            user = User.objects.create_user(email, email)
+            user.first_name = get_openid_attribute('value.firstname')
+            user.last_name = get_openid_attribute('value.lastname')
             user.save()
-            user = User.objects.get(username=google_email)
-            return user
 
         return user
- 
+
     def get_user(self, user_id):
         try:
             return User.objects.get(pk=user_id)
